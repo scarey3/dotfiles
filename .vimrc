@@ -18,6 +18,9 @@ colorscheme onedark
 set laststatus=2 number wildmenu showcmd hlsearch ruler nowrap
 set showmode autowrite showmatch wrapmargin=0 report=0 ic nu
 
+" Disable bells
+set visualbell t_vb=
+
 " Indentation
 set shiftwidth=4 softtabstop=4 expandtab autoindent
 
