@@ -4,3 +4,6 @@
 [submodule ".vim/pack/scarey/opt/onedark.vim"]
 	path = .vim/pack/scarey/opt/onedark.vim
 	url = https://github.com/joshdick/onedark.vim
+[submodule "/home/scarey/dotfiles/.vim/pack/scarey/start/nerdtree"]
+	path = /home/scarey/dotfiles/.vim/pack/scarey/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git

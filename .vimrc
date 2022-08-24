@@ -27,3 +27,5 @@ set shiftwidth=4 softtabstop=4 expandtab autoindent
 " Tab shortcuts
 nnoremap <LEFT> gT
 nnoremap <RIGHT> gt
+
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
