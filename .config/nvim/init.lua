@@ -10,3 +10,12 @@ require("nvim-tree").setup()
 
 -- Vim Options
 vim.opt.number = true
+vim.opt.mouse = "a"
+
+-- barbar
+require("bufferline").setup {
+    animation = true,
+    clickable = true,
+}
+
+require'lspconfig'.sumneko_lua.setup{}
