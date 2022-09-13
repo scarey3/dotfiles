@@ -99,5 +99,6 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim=nvim
+alias vim="nvim"
+alias vimdiff="nvim -d"
 alias ll="ls -l --color=auto"
