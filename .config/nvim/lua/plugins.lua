@@ -17,4 +17,6 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use "ms-jpq/coq_nvim"
 
+    use 'norcalli/nvim-colorizer.lua'
+
 end)
