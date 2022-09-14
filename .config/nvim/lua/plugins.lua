@@ -10,9 +10,11 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons' },
     }
 
-    use { 'romgrk/barbar.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'}
-    }
+    --use { 'romgrk/barbar.nvim',
+    --    requires = {'kyazdani42/nvim-web-devicons'}
+    --}
+
+    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
 
     use 'neovim/nvim-lspconfig'
     use "ms-jpq/coq_nvim"

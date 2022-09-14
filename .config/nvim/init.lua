@@ -7,8 +7,17 @@ vim.opt.termguicolors = true
 
 
 -- Binds
-vim.keymap.set('n', '<LEFT>', 'gT')
-vim.keymap.set('n', '<RIGHT>', 'gt')
+vim.keymap.set('n', '<LEFT>', function()
+    vim.api.nvim_command('BufferLineCyclePrev')
+end)
+
+vim.keymap.set('n', '<RIGHT>', function()
+    vim.api.nvim_command('BufferLineCycleNext')
+end)
+
+vim.keymap.set('n', '<leader>q', function()
+    vim.api.nvim_command('bd')
+end)
 
 --------------------------------------------------------------------------------
 -- Plugin Setup
@@ -24,10 +33,7 @@ require("nvim-tree").setup()
 
 
 -- bufferline
-require("bufferline").setup {
-    animation = true,
-    clickable = true,
-}
+require("bufferline").setup()
 
 -- LSPs
 require("lspconfig").sumneko_lua.setup{}
