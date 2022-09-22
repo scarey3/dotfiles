@@ -10,16 +10,44 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
+local colors = {}
+colors.macchiato = {}
+colors.macchiato.crust = "#181926"
+colors.macchiato.mantle = "#1e2030"
+colors.macchiato.base = "#24273a"
+colors.macchiato.surface0 = "#363a4f"
+colors.macchiato.surface1 = "#494d64"
+colors.macchiato.surface2 = "#5b6078"
+colors.macchiato.overlay0 = "#6e738d"
+colors.macchiato.overlay1 = "#8087a2"
+colors.macchiato.overlay2 = "#939ab7"
+colors.macchiato.subtext0 = "#a5adcb"
+colors.macchiato.subtext1 = "#b8c0e0"
+colors.macchiato.text = "#cad3f5"
+colors.macchiato.lavender = "#b7bdf8"
+colors.macchiato.blue = "#8aadf4"
+colors.macchiato.sapphire = "#7dc4e4"
+colors.macchiato.sky = "#91d7e3"
+colors.macchiato.teal = "#8bd5ca"
+colors.macchiato.green = "#a6da95"
+colors.macchiato.yellow = "#eed49f"
+colors.macchiato.peach = "#f5a97f"
+colors.macchiato.maroon = "#ee99a0"
+colors.macchiato.red = "#ed8796"
+colors.macchiato.mauve = "#c6a0f6"
+colors.macchiato.pink = "#f5bde6"
+colors.macchiato.flamingo = "#f0c6c6"
+colors.macchiato.rosewater = "#f4dbd6"
 
 theme.font          = "sans 8"
 
-theme.bg_normal     = "#ff00ff"
-theme.bg_focus      = "#535d6c"
+theme.bg_normal     = colors.macchiato.base
+theme.bg_focus      = colors.macchiato.base
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#000000"
+theme.fg_normal     = colors.macchiato.text
 theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
