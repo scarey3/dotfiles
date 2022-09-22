@@ -4,6 +4,10 @@ require('plugins')
 vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.termguicolors = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 
 
 -- Binds
@@ -17,7 +21,7 @@ end)
 
 -- Close file
 vim.keymap.set('n', '<leader>q', function()
-    target_buffer = vim.api.nvim_get_current_buf()
+    local target_buffer = vim.api.nvim_get_current_buf()
     vim.api.nvim_command('bprev')
     vim.api.nvim_command('bd ' .. target_buffer)
 end)
@@ -50,7 +54,30 @@ require("bufferline").setup {
 }
 
 -- LSPs
-require("lspconfig").sumneko_lua.setup{}
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "gopls", "sumneko_lua", "rust_analyzer" },
+})
+
+local lsp_config = require("lspconfig")
+
+-- Lua
+lsp_config.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+
+-- Rust
 
 require("colorizer").setup()
 

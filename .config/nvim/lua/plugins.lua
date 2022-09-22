@@ -10,14 +10,20 @@ return require('packer').startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons' },
     }
 
-    --use { 'romgrk/barbar.nvim',
-    --    requires = {'kyazdani42/nvim-web-devicons'}
-    --}
-
     use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
 
-    use 'neovim/nvim-lspconfig'
-    use "ms-jpq/coq_nvim"
+    -- Code completion
+    use { "ms-jpq/coq_nvim", branch = "coq" }
+    use { "ms-jpq/coq.artifacts", branch = "artifacts" }
+
+
+    -- LSP
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+
 
     use 'norcalli/nvim-colorizer.lua'
 
