@@ -26,21 +26,38 @@ vim.keymap.set('n', '<leader>q', function()
     vim.api.nvim_command('bd ' .. target_buffer)
 end)
 
+vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("NvimTreeToggle") end)
+vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") end)
+
 --------------------------------------------------------------------------------
 -- Plugin Setup
 --------------------------------------------------------------------------------
 
 -- Theme
-require("catppuccin").setup()
+require("catppuccin").setup({
+    integrations = {
+        nvimtree = true,
+        telescope = true,
+    },
+})
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 vim.cmd [[colorscheme catppuccin]]
 
 -- nvim-tree
 require("nvim-tree").setup()
 
+-- status line
+local ctp_feline = require('catppuccin.groups.integrations.feline')
+
+ctp_feline.setup{}
+
+require("feline").setup({
+	components = ctp_feline.get(),
+})
 
 -- bufferline
 require("bufferline").setup {
+    highlights = require("catppuccin.groups.integrations.bufferline").get(),
     options = {
         offsets = {
             {
@@ -53,10 +70,13 @@ require("bufferline").setup {
     }
 }
 
+-- Telescope
+require('telescope').setup()
+
 -- LSPs
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "gopls", "sumneko_lua", "rust_analyzer" },
+    ensure_installed = { "gopls", "omnisharp", "sumneko_lua", "rust_analyzer" },
 })
 
 local lsp_config = require("lspconfig")
@@ -77,7 +97,11 @@ lsp_config.sumneko_lua.setup({
     },
 })
 
--- Rust
+lsp_config.rust_analyzer.setup{}
+lsp_config.gopls.setup{}
+lsp_config.omnisharp.setup{}
+
+vim.g.coq_settings = { auto_start = "shut-up", }
 
 require("colorizer").setup()
 
