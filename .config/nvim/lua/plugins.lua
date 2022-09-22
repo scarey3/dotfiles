@@ -8,6 +8,9 @@ return require('packer').startup(function(use)
     -- Catppuccin theme
     use { "catppuccin/nvim", as = "catppuccin" }
 
+    -- Startup
+    use {'glepnir/dashboard-nvim'}
+
     -- File tree
     use { 'kyazdani42/nvim-tree.lua',
         requires = { 'kyazdani42/nvim-web-devicons' },

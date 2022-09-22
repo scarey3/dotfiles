@@ -36,12 +36,17 @@ vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") en
 -- Theme
 require("catppuccin").setup({
     integrations = {
+        dashboard = true,
         nvimtree = true,
         telescope = true,
     },
 })
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 vim.cmd [[colorscheme catppuccin]]
+
+-- dashboard
+local dashboard = require("dashboard")
+dashboard.session_directory = "~/.nvim_sessions"
 
 -- nvim-tree
 require("nvim-tree").setup()
