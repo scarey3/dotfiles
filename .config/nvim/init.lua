@@ -29,6 +29,14 @@ end)
 vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("NvimTreeToggle") end)
 vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") end)
 
+-- Autocmd
+vim.api.nvim_create_autocmd("VimEnter", {
+    command = "silent !kitty @ set-spacing padding=0"
+})
+vim.api.nvim_create_autocmd("VimLeave", {
+    command = "silent !kitty @ set-spacing padding=10"
+})
+
 --------------------------------------------------------------------------------
 -- Plugin Setup
 --------------------------------------------------------------------------------
