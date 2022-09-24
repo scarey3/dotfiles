@@ -9,7 +9,6 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 
-
 -- Binds
 vim.keymap.set('n', '<LEFT>', function()
     vim.api.nvim_command('BufferLineCyclePrev')
@@ -33,8 +32,19 @@ vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") en
 vim.api.nvim_create_autocmd("VimEnter", {
     command = "silent !kitty @ set-spacing padding=0"
 })
+
 vim.api.nvim_create_autocmd("VimLeave", {
     command = "silent !kitty @ set-spacing padding=10"
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+        -- Language specific options
+        if (vim.bo.filetype == "dart") then
+            vim.opt.shiftwidth = 2
+            vim.opt.softtabstop = 2
+        end
+    end,
 })
 
 --------------------------------------------------------------------------------
