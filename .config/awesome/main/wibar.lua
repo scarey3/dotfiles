@@ -93,18 +93,27 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
     }
+
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        update_function = function (w, buttons, label, data, objects)
+            awful.widget.common.list_update(w, buttons, label, data, objects)
+            w:set_max_widget_size(300)
+        end,
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({
+        position = "top", 
+        screen = s,
+        height = "30",
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
