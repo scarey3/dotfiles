@@ -20,6 +20,13 @@ end)
 
 -- Close file
 vim.keymap.set('n', '<leader>q', function()
+
+    -- Exit if file has unsaved changes
+    if (vim.bo.modified) then
+        print("There are unsaved changes")
+        return
+    end
+
     local target_buffer = vim.api.nvim_get_current_buf()
     vim.api.nvim_command('bprev')
     vim.api.nvim_command('bd ' .. target_buffer)
