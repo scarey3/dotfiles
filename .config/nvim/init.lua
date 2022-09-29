@@ -41,7 +41,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
-    command = "silent !kitty @ set-spacing padding=10"
+    callback = function()
+        -- Only when exiting to kitty
+        if (os.getenv("TERM") == "xterm-kitty") then
+            vim.api.nvim_command("silent !kitty @ set-spacing padding=10")
+        end
+    end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
