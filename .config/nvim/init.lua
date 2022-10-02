@@ -166,6 +166,8 @@ lsp_config.rust_analyzer.setup{}
 lsp_config.gopls.setup{}
 lsp_config.omnisharp.setup{}
 
+require('go').setup()
+
 vim.g.coq_settings = { auto_start = "shut-up", }
 
 require("colorizer").setup()

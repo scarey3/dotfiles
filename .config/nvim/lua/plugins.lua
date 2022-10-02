@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
         "neovim/nvim-lspconfig",
     }
 
+    use 'ray-x/go.nvim'
+    use 'ray-x/guihua.lua'
+
     use 'norcalli/nvim-colorizer.lua'
 
 end)
