@@ -109,7 +109,13 @@ dashboard.custom_center = {
 }
 
 -- nvim-tree
-require("nvim-tree").setup()
+require("nvim-tree").setup {
+    open_on_setup = true,
+    hijack_directories = {
+        enable = true,
+        auto_open = true,
+    },
+}
 
 -- status line
 local ctp_feline = require('catppuccin.groups.integrations.feline')
@@ -162,11 +168,16 @@ lsp_config.sumneko_lua.setup({
     },
 })
 
+-- Rust
 lsp_config.rust_analyzer.setup{}
+
+-- Go
 lsp_config.gopls.setup{}
+require('go').setup()
+
+-- C#
 lsp_config.omnisharp.setup{}
 
-require('go').setup()
 
 vim.g.coq_settings = { auto_start = "shut-up", }
 
