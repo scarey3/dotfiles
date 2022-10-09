@@ -62,7 +62,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 --------------------------------------------------------------------------------
 -- Plugin Setup
 --------------------------------------------------------------------------------
-
 -- Theme
 require("catppuccin").setup({
     integrations = {
@@ -143,8 +142,18 @@ require("bufferline").setup {
 
 -- Telescope
 require('telescope').setup()
+require('telescope').load_extension('projects')
 
--- LSPs
+-- Project
+require("project_nvim").setup {
+-- your configuration comes here
+-- or leave it empty to use the default settings
+-- refer to the configuration section below
+}
+
+--------------------------------------------------------------------------------
+-- LSP
+--------------------------------------------------------------------------------
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "gopls", "omnisharp", "sumneko_lua", "rust_analyzer" },
@@ -152,6 +161,24 @@ require("mason-lspconfig").setup({
 
 local lsp_config = require("lspconfig")
 
+-- Diagnostic config
+vim.diagnostic.config({
+    virtual_text = false,
+})
+
+-- Show diagnostics on hover
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+
+--------------------------------------------------------------------------------
+-- DAP
+--------------------------------------------------------------------------------
+local dap = require("dap")
+local dapui = require("dapui").setup()
+
+--------------------------------------------------------------------------------
+-- Language
+--------------------------------------------------------------------------------
 -- Lua
 lsp_config.sumneko_lua.setup({
     settings = {
@@ -177,6 +204,28 @@ require('go').setup()
 
 -- C#
 lsp_config.omnisharp.setup{}
+
+dap.adapters.coreclr = {
+    type = 'executable',
+    --command = '/home/scarey/.local/share/nvim/mason/bin/netcoredbg',
+    command = '/mnt/d/netcoredbg/netcoredbg.exe',
+    args = {'--interpreter=vscode'}
+}
+
+-- for now...
+dap.configurations.cs = {
+  {
+    name = "s&box - attach",
+    type = "coreclr",
+    request = "attach",
+    --processId = "7224",
+    requireExactSource = false,
+    processName = "sbox.exe",
+    --program = function()
+    --    return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    --end,
+  },
+}
 
 
 vim.g.coq_settings = { auto_start = "shut-up", }

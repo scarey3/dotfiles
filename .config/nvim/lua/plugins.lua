@@ -40,6 +40,13 @@ return require('packer').startup(function(use)
         "neovim/nvim-lspconfig",
     }
 
+    -- DAP
+    use "mfussenegger/nvim-dap"
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+    -- Project management
+    use "ahmedkhalf/project.nvim"
+
     use 'ray-x/go.nvim'
     use 'ray-x/guihua.lua'
 
