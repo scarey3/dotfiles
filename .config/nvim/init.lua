@@ -34,6 +34,8 @@ end)
 
 vim.keymap.set('n', "<leader><TAB>", function() vim.api.nvim_command("NvimTreeToggle") end)
 vim.keymap.set('n', "<leader>t", function() vim.api.nvim_command("Telescope") end)
+vim.keymap.set('n', "<leader>b", function() vim.api.nvim_command("DapToggleBreakpoint") end)
+vim.keymap.set('n', "<leader>d", function() vim.api.nvim_command("DapUiToggle") end)
 
 -- Autocmd
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -218,9 +220,9 @@ dap.configurations.cs = {
     name = "s&box - attach",
     type = "coreclr",
     request = "attach",
-    --processId = "7224",
+    processId = "11528",
     requireExactSource = false,
-    processName = "sbox.exe",
+    --processName = "sbox.exe",
     --program = function()
     --    return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
     --end,
