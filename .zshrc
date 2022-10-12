@@ -106,4 +106,5 @@ alias snip="maim -s | xclip -selection clipboard -t image/png"
 alias ssh="kitty +kitten ssh"
 
 export CHROME_EXECUTABLE="/usr/bin/chromium"
-export PATH="$PATH:$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin:$(go env GOPATH)/bin"
+export LIBVIRT_DEFAULT_URI="qemu:///system"
