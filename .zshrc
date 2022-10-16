@@ -99,12 +99,3 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="nvim"
-alias vimdiff="nvim -d"
-alias ll="ls -l --color=auto"
-alias snip="maim -s | xclip -selection clipboard -t image/png"
-alias ssh="kitty +kitten ssh"
-
-export CHROME_EXECUTABLE="/usr/bin/chromium"
-export PATH="$PATH:$HOME/.pub-cache/bin:$(go env GOPATH)/bin"
-export LIBVIRT_DEFAULT_URI="qemu:///system"
