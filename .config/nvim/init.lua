@@ -2,6 +2,7 @@ require('plugins')
 
 -- Vim Options
 vim.opt.mouse = "a"
+vim.opt.mousemoveevent = true
 vim.opt.number = true
 vim.opt.termguicolors = true
 vim.opt.shiftwidth = 4
@@ -10,13 +11,10 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 
 -- Binds
-vim.keymap.set('n', '<LEFT>', function()
-    vim.api.nvim_command('BufferLineCyclePrev')
-end)
-
-vim.keymap.set('n', '<RIGHT>', function()
-    vim.api.nvim_command('BufferLineCycleNext')
-end)
+vim.keymap.set('n', '<LEFT>', function() vim.api.nvim_command('BufferLineCyclePrev') end)
+vim.keymap.set('n', '<RIGHT>', function() vim.api.nvim_command('BufferLineCycleNext') end)
+vim.keymap.set('n', '<leader><LEFT>', function() vim.api.nvim_command('BufferLineMovePrev') end)
+vim.keymap.set('n', '<leader><RIGHT>', function() vim.api.nvim_command('BufferLineMoveNext') end)
 
 -- Close file
 vim.keymap.set('n', '<leader>q', function()
@@ -138,6 +136,11 @@ require("bufferline").setup {
                 highlight = "Directory",
                 separator = true -- use a "true" to enable the default, or set your own character
             }
+        },
+        hover = {
+            enabled = true,
+            delay = 0,
+            reveal = {'close'}
         }
     }
 }
