@@ -1,0 +1,5 @@
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias ll="ls -l --color=auto"
+alias snip="maim -s | xclip -selection clipboard -t image/png"
+alias ssh="kitty +kitten ssh"
