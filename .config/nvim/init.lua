@@ -18,7 +18,6 @@ vim.keymap.set('n', '<leader><RIGHT>', function() vim.api.nvim_command('BufferLi
 
 -- Close file
 vim.keymap.set('n', '<leader>q', function()
-
     -- Exit if file has unsaved changes
     if (vim.bo.modified) then
         print("There are unsaved changes")
@@ -77,7 +76,6 @@ vim.cmd [[colorscheme catppuccin]]
 local home = os.getenv("HOME")
 local dashboard = require("dashboard")
 dashboard.session_directory = "~/.nvim_sessions"
-dashboard.preview_file_path = home .. '/.config/nvim/static/neovim.cat'
 dashboard.preview_file_height = 11
 dashboard.preview_file_width = 70
 dashboard.custom_center = {
@@ -108,8 +106,18 @@ dashboard.custom_center = {
 }
 
 -- nvim-tree
+local function open_nvim_tree()
+    -- Do not open tree if nvimdiff
+    if vim.api.nvim_win_get_option(0, "diff") then
+        return
+    end
+
+    require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
 require("nvim-tree").setup {
-    open_on_setup = true,
     hijack_directories = {
         enable = true,
         auto_open = true,
@@ -161,7 +169,7 @@ require("project_nvim").setup {
 --------------------------------------------------------------------------------
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "gopls", "omnisharp", "sumneko_lua", "rust_analyzer" },
+    ensure_installed = { "gopls", "omnisharp", "lua_ls", "rust_analyzer" },
 })
 
 local lsp_config = require("lspconfig")
@@ -185,7 +193,7 @@ local dapui = require("dapui").setup()
 -- Language
 --------------------------------------------------------------------------------
 -- Lua
-lsp_config.sumneko_lua.setup({
+lsp_config.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
@@ -205,7 +213,6 @@ lsp_config.rust_analyzer.setup{}
 
 -- Go
 lsp_config.gopls.setup{}
-require('go').setup()
 
 -- C#
 lsp_config.omnisharp.setup{}
